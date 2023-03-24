@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'web_app_py'
+app.config['MYSQL_DB'] = 'flask_db'
 
 mysql = MySQL(app)
 
@@ -21,12 +21,22 @@ def submit():
 	regNum = request.form['regNum']
 	studentName = request.form['studentName']
 	userEmail = request.form['userEmail']
-	userSchool = request.form['userSchool']
+	y1 = request.form['y1']
+	y2 = request.form['y2']
+	y3 = request.form['y3']
+	markSum = int(y1 + y2 + y3)
+	markAverage = markSum/3
+	percentage = (markSum * 100) / 300
 	cursor = mysql.connection.cursor()
-	sql = "INSERT INTO students (reg_num, student_name, user_email, user_school) VALUES ('{}', '{}', '{}', '{}')".format(regNum, studentName, userEmail, userSchool)
+	sql = "INSERT INTO flask (reg_num, student_name, user_email, y1, y2, y3, sum, average, percentage) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(regNum, studentName, userEmail, y1, y2, y3, markSum, markAverage, percentage)
 	cursor.execute(sql)
 	cursor.connection.commit()	
-	return f"Student Inserted"
+	return render_template("success.html")
+
+@app.route('/data')
+def getData():
+
+	return render_template("data.html")
 
 if __name__ == "__main__":
 	app.run()
