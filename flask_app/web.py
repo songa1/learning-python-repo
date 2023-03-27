@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'web_app_py'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'webapp_db'
 
 mysql = MySQL(app)
 
@@ -20,10 +20,16 @@ def index():
 def submit():
 	regNum = request.form['regNum']
 	studentName = request.form['studentName']
-	userEmail = request.form['userEmail']
-	userSchool = request.form['userSchool']
+	userEmail = request.form['studentEmail']
+	y1 = request.form['y1']
+	y2 = request.form['y2']
+	y3 = request.form['y3']
+	thesum = sum([int(y1), int(y2), int(y3)]);
+	print(thesum)
+
+	percentage = (int(thesum) * 100)/300;
 	cursor = mysql.connection.cursor()
-	sql = "INSERT INTO students (reg_num, student_name, user_email, user_school) VALUES ('{}', '{}', '{}', '{}')".format(regNum, studentName, userEmail, userSchool)
+	sql = "INSERT INTO students (reg_num, student_name, student_email, y1_marks, y2_marks, y3_marks, marks_percentage, marks_sum) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(regNum, studentName, userEmail, y1, y2, y3,int(percentage), int(thesum))
 	cursor.execute(sql)
 	cursor.connection.commit()	
 	return f"Student Inserted"
