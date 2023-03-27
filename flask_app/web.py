@@ -32,7 +32,12 @@ def submit():
 	sql = "INSERT INTO students (reg_num, student_name, student_email, y1_marks, y2_marks, y3_marks, marks_percentage, marks_sum) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(regNum, studentName, userEmail, y1, y2, y3,int(percentage), int(thesum))
 	cursor.execute(sql)
 	cursor.connection.commit()	
-	return f"Student Inserted"
+	return render_template("success.html")
+
+@app.route('/data')
+def getData():
+
+	return render_template("data.html")
 
 if __name__ == "__main__":
 	app.run()
