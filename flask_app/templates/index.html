@@ -1,98 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add User</title>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/style.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <h2>Students</h2>
+      <div>
+        <a href="/">Add new</a>
+        <a href="/data">View all</a>
+      </div>
+    </nav>
+    <form action="/submit" method="POST" class="form">
+      <h2>Enter Your personal details</h2>
+      <label for="regNum">Reg Number:</label>
+      <input type="text" placeholder="Registration Number" name="regNum" />
 
-		* {
-			box-sizing: border-box;
-			font-family: ubuntu;
-		}
+      <label for="studentName">Student Name:</label>
+      <input type="text" placeholder="Student Name" name="studentName" />
 
-		body {
-			margin: 0;
-		}
+      <label for="studentEmail">Email:</label>
+      <input type="email" placeholder="Student Email" name="studentEmail" />
 
-		nav {
-			width: 100%;
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			background-color: rgb(1, 35, 65);
-			color: white;
-		}
+      <label for="y1">Y1:</label>
+      <input type="number" placeholder="Year 1 marks" name="y1" />
 
-		nav div a {
-			color: white;
-			text-decoration: none;
-			padding: 5px 20px;
-		}
+      <label for="y2">Y2:</label>
+      <input type="number" placeholder="Year 2 marks" name="y2" />
 
-		.btn {
-			padding: 10px 20px;
-			border-radius: 5px;
-			background-color: rgba(3, 90, 112, 0.5);
-			border: 0;
-		}
+      <label for="y3">Y3:</label>
+      <input type="number" placeholder="Year 3 marks" name="y3" />
 
-		.btn:active {
-			border: 1px solid rgba(3, 90, 112, 0.5);
-		}
-
-		.form {
-			width: 40%;
-			margin: 20px auto;
-			padding: 20px;
-			background-color: aliceblue;
-			border-radius: 5px;
-			border: 1px solid rgba(3, 90, 112, 0.5)
-		}
-
-		.form h2 {
-			text-align: center;
-		}
-
-		.form input {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 20px;
-			border-radius: 5px;
-			border: 1px solid rgba(3, 90, 112, 0.5);
-		}
-
-		.form input:focus {
-			border: 2px solid rgba(3, 90, 112, 0.5);
-		}
-	</style>
-</head>
-<body>
-	
-	<form action="/submit" method="POST" class="form">
-		<h2>Enter Your personal details</h2>
-	    <label for="regNum">Reg Number:</label>
-	    <input type="text" placeholder="Registration Number" name="regNum">
-
-	    <label for="studentName">Student Name:</label>
-	    <input type="text" placeholder="Student Name" name="studentName">
-
-	    <label for="studentEmail">Email:</label>
-	    <input type="email" placeholder="Student Email" name="studentEmail">
-
-	    <label for="y1">Y1:</label>
-	    <input type="number" placeholder="Year 1 marks" name="y1">
-
-		<label for="y2">Y2:</label>
-	    <input type="number" placeholder="Year 2 marks" name="y2">
-
-		<label for="y3">Y3:</label>
-	    <input type="number" placeholder="Year 3 marks" name="y3">
-
-	    <input type="submit" value="Submit" class="btn">
-	</form>
-
-</body>
+      <input type="submit" value="Submit" class="btn" />
+    </form>
+  </body>
 </html>

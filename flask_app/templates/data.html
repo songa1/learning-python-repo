@@ -1,16 +1,50 @@
+<!DOCTYPE html>
 <html>
-<head><title>Fetch data</title></head>
-<body>
-	<h2>Welcome </h2>
-	<p>Your email is </p>
-	<br>
-	<p>Here are marks you've got over time.</p>
-	<h2>Y1: 23</h2>
-	<h2>Y2: 56</h2>
-	<h2>Y3: 45</h2>
-	<br>
-	<h3>In Total you have: </h3>
-	<br>
-	<h3>Your average is: </h3>
-</body>
+  <head>
+    <title>Students</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/style.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <h2>Students</h2>
+      <div>
+        <a href="/">Add new</a>
+        <a href="/data">View all</a>
+      </div>
+    </nav>
+    <div class="data">
+      <table>
+        <thead>
+          <tr>
+            <th>Registration Number</th>
+            <th>Student Name</th>
+            <th>Student Email</th>
+            <th>Year 1 Marks (100)</th>
+            <th>Year 2 Marks (100)</th>
+            <th>Year 3 Marks (100)</th>
+            <th>Marks Sum (300)</th>
+            <th>Marks Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in data %}
+          <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[7] }}</td>
+            <td>{{ row[6] }} %</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>
